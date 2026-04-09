@@ -1,9 +1,9 @@
 <template>
-    <enso-table class="box is-paddingless raises-on-hover"
+    <enso-table class="box p-0 raises-on-hover"
         id="companies"
         @clicked="visit">
         <template #status="{ column, row }">
-            <span class="tag is-table-tag"
+            <span class="tag"
                 :class="status(column, row)">
                 {{ column.enum._get(row.status) }}
             </span>

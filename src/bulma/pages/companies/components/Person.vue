@@ -1,5 +1,5 @@
 <template>
-    <div class="box has-background-light raises-on-hover p-3"
+    <div class="box p-3"
         @mouseover="controls = true"
         @mouseleave="controls = false">
         <p class="title is-5">
@@ -9,13 +9,13 @@
                 <a class="button is-naked is-small"
                     @click="$emit('edit')">
                     <span class="icon">
-                        <fa icon="pencil-alt"/>
+                        <fa :icon="faPen"/>
                     </span>
                 </a>
                 <a class="button is-naked is-small"
                     @click="$emit('delete')">
                     <span class="icon">
-                        <fa icon="trash-alt"/>
+                        <fa :icon="faTrashCan"/>
                     </span>
                 </a>
             </span>
@@ -34,14 +34,7 @@
 
 <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-    faCheck, faTimes, faEnvelope, faPhone, faInfoCircle, faPencilAlt, faTrashAlt,
-} from '@fortawesome/free-solid-svg-icons';
-
-library.add([
-    faCheck, faTimes, faEnvelope, faPhone, faInfoCircle, faPencilAlt, faTrashAlt,
-]);
+import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export default {
     name: 'Person',
@@ -61,6 +54,8 @@ export default {
 
     data: () => ({
         controls: false,
+        faPen,
+        faTrashCan,
     }),
 };
 </script>

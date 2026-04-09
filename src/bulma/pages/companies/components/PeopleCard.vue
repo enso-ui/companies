@@ -1,10 +1,10 @@
 <template>
     <card collapsible
         :collapsed="collapsed">
-        <card-header class="has-background-light">
+        <card-header>
             <template #title>
                 <span class="icon is-small mr-1">
-                    <fa icon="address-card"/>
+                    <fa :icon="faAddressCard"/>
                 </span>
                 {{ displayTitle }}
             </template>
@@ -24,16 +24,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAddressCard, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import {
     Card, CardHeader, CardRefresh, CardCollapse, CardBadge, CardContent,
 } from '@enso-ui/card/bulma';
+import { useStore } from '../../../../utils/pinia';
 import People from './People.vue';
-
-library.add(faAddressCard, faPlusSquare);
 
 export default {
     name: 'PeopleCard',
@@ -67,12 +64,15 @@ export default {
     },
 
     data: () => ({
+        faAddressCard,
         query: '',
         count: 0,
     }),
 
     computed: {
-        ...mapState('layout', ['isMobile']),
+        isMobile() {
+            return useStore('layout').isMobile;
+        },
         displayTitle() {
             return !this.isMobile
                 ? this.title || this.i18n('People')

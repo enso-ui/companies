@@ -1,6 +1,6 @@
 <template>
     <modal class="person-modal">
-        <enso-form class="box has-background-light"
+        <enso-form class="box"
             v-bind="$attrs"
             disable-state
             @ready="init">
@@ -12,7 +12,7 @@
                         {{ i18n('Edit Person') }}
                     </span>
                     <span class="icon">
-                        <fa icon="user-tie"/>
+                        <fa :icon="faUserTie"/>
                     </span>
                     <span class="is-hidden-mobile"/>
                 </a>
@@ -23,12 +23,9 @@
 
 <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '@enso-ui/modal/bulma';
 import { EnsoForm } from '@enso-ui/forms/bulma';
-
-library.add(faUserTie);
 
 export default {
     name: 'PersonForm',
@@ -47,6 +44,7 @@ export default {
     emits: ['edit-person'],
 
     data: () => ({
+        faUserTie,
         id: null,
     }),
 

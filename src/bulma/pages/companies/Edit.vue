@@ -1,7 +1,7 @@
 <template>
     <div class="columns is-centered">
         <div class="column is-three-quarters is-full-touch">
-            <enso-form class="box has-background-light raises-on-hover"
+            <enso-form class="box"
                 ref="form">
                 <template #mandatary="props">
                     <form-field v-bind="props"
@@ -10,7 +10,10 @@
                 <template #actions-left>
                     <action tag="a"
                         :button="person"
-                        @click="$router.push({ name: 'administration.people.create' })
+                        @click="$router.push({
+                            name: 'administration.people.create',
+                            params: $route.params,
+                        })
                             .catch(this.routerErrorHandler)"
                         v-if="canAccess('administration.people.create')"/>
                 </template>

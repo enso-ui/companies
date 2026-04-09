@@ -6,14 +6,14 @@
                 :internal-query="internalQuery"
                 :fetch="fetch">
                 <p class="control">
-                    <a class="button is-rounded is-small is-bold is-info"
+                    <a class="button is-rounded is-small is-info has-text-weight-bold"
                         @click="create()"
                         v-if="canAccess('administration.companies.people.create')">
                         <span>
                             {{ i18n('Assign') }}
                         </span>
                         <span class="icon">
-                            <fa icon="plus"/>
+                            <fa :icon="faPlus"/>
                         </span>
                     </a>
                 </p>
@@ -23,7 +23,7 @@
                         type="text"
                         :placeholder="i18n('Filter')">
                     <span class="icon is-small is-left">
-                        <fa icon="search"/>
+                        <fa :icon="faSearch"/>
                     </span>
                     <span v-if="internalQuery"
                         class="icon is-small is-right clear-button"
@@ -32,13 +32,13 @@
                     </span>
                 </p>
                 <p class="control">
-                    <a class="button is-rounded is-small is-bold ml-2"
+                    <a class="button is-rounded is-small ml-2 has-text-weight-bold"
                         @click="fetch()">
                         <span>
                             {{ i18n('Reload') }}
                         </span>
                         <span class="icon">
-                            <fa icon="sync"/>
+                            <fa :icon="faArrowsRotate"/>
                         </span>
                     </a>
                 </p>
@@ -100,13 +100,10 @@
 
 <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faSync, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faArrowsRotate, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '@enso-ui/modal/bulma';
 import Person from './Person.vue';
 import PersonForm from './PersonForm.vue';
-
-library.add(faPlus, faSync, faSearch);
 
 export default {
     name: 'People',
@@ -134,6 +131,9 @@ export default {
     emits: ['remove', 'update'],
 
     data: () => ({
+        faArrowsRotate,
+        faPlus,
+        faSearch,
         loading: false,
         people: [],
         path: null,
