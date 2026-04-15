@@ -1,5 +1,5 @@
 <template>
-    <enso-table class="box p-0 raises-on-hover"
+    <enso-table class="box p-0"
         id="companies"
         @clicked="visit">
         <template #status="{ column, row }">
