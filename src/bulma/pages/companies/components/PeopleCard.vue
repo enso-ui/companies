@@ -29,7 +29,7 @@ import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import {
     Card, CardHeader, CardRefresh, CardCollapse, CardBadge, CardContent,
 } from '@enso-ui/card/bulma';
-import { useStore } from '../../../../utils/pinia';
+import { layout } from '@enso-ui/ui/src/pinia/layout';
 import People from './People.vue';
 
 export default {
@@ -71,7 +71,7 @@ export default {
 
     computed: {
         isMobile() {
-            return useStore('layout').isMobile;
+            return layout().isMobile;
         },
         displayTitle() {
             return !this.isMobile
