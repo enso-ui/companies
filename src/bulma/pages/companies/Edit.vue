@@ -9,12 +9,12 @@
                 </template>
                 <template #actions-left>
                     <action tag="a"
-                        :button="person"
-                        @click="$router.push({
-                            name: 'administration.people.create',
-                            params: $route.params,
-                        })
-                            .catch(this.routerErrorHandler)"
+                        :button="{
+                            class: 'is-dark',
+                            icon: faUserTie,
+                            label: 'Person',
+                        }"
+                        @click="createPerson"
                         v-if="canAccess('administration.people.create')"/>
                 </template>
             </enso-form>
@@ -25,9 +25,9 @@
                         <div class="columns is-centered">
                             <div class="column is-two-thirds">
                                 <people :id="companyId"
-                                    @update="count.People = $refs.people.count"
+                                    @update="updatePeople(count)"
                                     @remove="personRemoved"
-                                    ref="people"/>
+                                    ref="peopleRef"/>
                             </div>
                         </div>
                     </tab>
@@ -37,8 +37,8 @@
                             <div class="column is-two-thirds">
                                 <addresses :id="companyId"
                                     type="company"
-                                    @update="count.Addresses = $refs.addresses.count"
-                                    ref="addresses"/>
+                                    @update="updateAddresses(count)"
+                                    ref="addressesRef"/>
                             </div>
                         </div>
                     </tab>
@@ -48,8 +48,8 @@
                             <div class="column is-two-thirds">
                                 <comments :id="companyId"
                                     type="company"
-                                    @update="count.Comments = $refs.comments.count"
-                                    ref="comments"/>
+                                    @update="updateComments(count)"
+                                    ref="commentsRef"/>
                             </div>
                         </div>
                     </tab>
@@ -59,8 +59,8 @@
                             <div class="column is-two-thirds">
                                 <documents :id="companyId"
                                     type="company"
-                                    @update="count.Documents = $refs.documents.count"
-                                    ref="documents"/>
+                                    @update="updateDocuments(count)"
+                                    ref="documentsRef"/>
                             </div>
                         </div>
                     </tab>
@@ -70,7 +70,10 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { inject, ref, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { Tab } from '@enso-ui/tabs/bulma';
 import Accessories from '@enso-ui/accessories/bulma';
 import { Addresses } from '@enso-ui/addresses/bulma';
@@ -79,48 +82,48 @@ import People from './components/People.vue';
 import { Comments } from '@enso-ui/comments/bulma';
 import { Documents } from '@enso-ui/documents/bulma';
 
-export default {
-    name: 'Edit',
+const canAccess = inject('canAccess');
+const routerErrorHandler = inject('routerErrorHandler');
 
-    components: {
-        Action,
-        EnsoForm,
-        FormField,
-        Accessories,
-        Tab,
-        Addresses,
-        People,
-        Comments,
-        Documents,
-    },
+const route = useRoute();
+const router = useRouter();
 
-    inject: ['canAccess', 'routerErrorHandler'],
+const form = ref(null);
+const peopleRef = ref(null);
+const addressesRef = ref(null);
+const commentsRef = ref(null);
+const documentsRef = ref(null);
 
-    data: () => ({
-        person: {
-            class: 'is-warning',
-            icon: 'user-tie',
-            label: 'Person',
-        },
-    }),
+const companyId = computed(() => Number.parseInt(route.params.company, 10));
 
-    computed: {
-        companyId() {
-            return Number.parseInt(this.$route.params.company, 10);
-        },
-        pivotParams() {
-            return {
-                companies: { id: this.companyId },
-            };
-        },
-    },
+const pivotParams = computed(() => ({
+    companies: { id: companyId.value },
+}));
 
-    methods: {
-        personRemoved(personId) {
-            if (this.$refs.form.field('mandatary').value === personId) {
-                this.$refs.form.field('mandatary').value = null;
-            }
-        },
-    },
+const createPerson = () => router.push({
+    name: 'administration.people.create',
+    params: route.params,
+}).catch(routerErrorHandler);
+
+const updatePeople = count => {
+    count.People = peopleRef.value.count;
+};
+
+const updateAddresses = count => {
+    count.Addresses = addressesRef.value.count;
+};
+
+const updateComments = count => {
+    count.Comments = commentsRef.value.count;
+};
+
+const updateDocuments = count => {
+    count.Documents = documentsRef.value.count;
+};
+
+const personRemoved = personId => {
+    if (form.value.field('mandatary').value === personId) {
+        form.value.field('mandatary').value = null;
+    }
 };
 </script>

@@ -6,7 +6,7 @@
                 :internal-query="internalQuery"
                 :fetch="fetch">
                 <p class="control">
-                    <a class="button is-rounded is-small is-info has-text-weight-bold"
+                    <a class="button is-small is-dark"
                         @click="create()"
                         v-if="canAccess('administration.companies.people.create')">
                         <span>
@@ -19,7 +19,7 @@
                 </p>
                 <p class="control has-icons-left has-icons-right is-expanded">
                     <input v-model="internalQuery"
-                        class="input is-rounded is-small is-expanded"
+                        class="input is-small is-expanded"
                         type="text"
                         :placeholder="i18n('Filter')">
                     <span class="icon is-small is-left">
@@ -32,7 +32,7 @@
                     </span>
                 </p>
                 <p class="control">
-                    <a class="button is-rounded is-small ml-2 has-text-weight-bold"
+                    <a class="button is-small ml-2"
                         @click="fetch()">
                         <span>
                             {{ i18n('Reload') }}

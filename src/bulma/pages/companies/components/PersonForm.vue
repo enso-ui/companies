@@ -6,54 +6,37 @@
             @ready="init">
             <template #actions-left
                 v-if="id">
-                <a class="button is-warning"
-                    @click="$emit('edit-person', id)">
-                    <span class="is-hidden-mobile">
-                        {{ i18n('Edit Person') }}
-                    </span>
-                    <span class="icon">
-                        <fa :icon="faUserTie"/>
-                    </span>
-                    <span class="is-hidden-mobile"/>
-                </a>
+                 <action tag="a"
+                    :button="{
+                        class: 'is-dark',
+                        icon: faUserTie,
+                        label: 'Edit Person',
+                    }"
+                    @click="emit('edit-person', id)"/>
             </template>
         </enso-form>
     </modal>
 </template>
 
-<script>
-import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
+<script setup>
+import { ref } from 'vue';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '@enso-ui/modal/bulma';
-import { EnsoForm } from '@enso-ui/forms/bulma';
+import { EnsoForm, Action } from '@enso-ui/forms/bulma';
 
-export default {
-    name: 'PersonForm',
-
-    components: { Fa, Modal, EnsoForm },
-
-    inject: ['i18n'],
-
-    props: {
-        companyId: {
-            type: Number,
-            required: true,
-        },
+const props = defineProps({
+    companyId: {
+        type: Number,
+        required: true,
     },
+});
 
-    emits: ['edit-person'],
+const emit = defineEmits(['edit-person']);
+const id = ref(null);
 
-    data: () => ({
-        faUserTie,
-        id: null,
-    }),
-
-    methods: {
-        init({ form }) {
-            this.id = form.field('id').value;
-            form.field('company_id').value = this.companyId;
-        },
-    },
+const init = ({ form }) => {
+    id.value = form.field('id').value;
+    form.field('company_id').value = props.companyId;
 };
 </script>
 
