@@ -1,8 +1,8 @@
 {
   "name": "@enso-ui/companies",
   "version": "5.1.7",
-  "description": "Basic companies package",
-  "main": "bulma/index.js",
+  "description": "Companies administration pages and tabbed company detail widgets for Enso UI.",
+  "main": "src/bulma/pages/companies/Index.vue",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enso-ui/companies.git"
