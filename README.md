@@ -26,18 +26,18 @@ This package is also available through the full `enso-ui` workspace bundle.
 
 ## Features
 
-- ships company list and edit pages for the administration module
+- ships company list, create, and edit pages for the administration module
 - combines forms, accessories, tabs, addresses, comments, documents, and people widgets in the edit page
-- provides reusable company detail tabs and people-card helpers inside the page modules
+- provides reusable company detail helpers such as `PeopleCard` inside the page modules
 
 ## Usage
 
 ```js
-import CompaniesIndex from '@enso-ui/companies/src/bulma/pages/companies/Index.vue';
-import CompaniesEdit from '@enso-ui/companies/src/bulma/pages/companies/Edit.vue';
+import CompaniesIndex from '@enso-ui/companies';
+import CompanyCreate from '@enso-ui/companies/src/bulma/pages/companies/Create.vue';
+import CompanyEdit from '@enso-ui/companies/src/bulma/pages/companies/Edit.vue';
+import PeopleCard from '@enso-ui/companies/src/bulma/pages/companies/components/PeopleCard.vue';
 ```
-
-The package is page-oriented. The Enso shell typically imports the page modules directly from `src/bulma/pages/companies/...`.
 
 ## API
 
@@ -45,7 +45,13 @@ The package is page-oriented. The Enso shell typically imports the page modules 
 
 Table page for the companies list.
 
-Import: `@enso-ui/companies/src/bulma/pages/companies/Index.vue`
+Import: `@enso-ui/companies`
+
+### `Create`
+
+Create page for a company record.
+
+Import: `@enso-ui/companies/src/bulma/pages/companies/Create.vue`
 
 ### `Edit`
 
@@ -58,6 +64,28 @@ Import: `@enso-ui/companies/src/bulma/pages/companies/Edit.vue`
 Reusable card wrapper around the company people list.
 
 Import: `@enso-ui/companies/src/bulma/pages/companies/components/PeopleCard.vue`
+
+## Routes
+
+### `administration/companies`
+
+Route group:
+- `administration.companies.index`
+- `administration.companies.create`
+- `administration.companies.edit`
+
+Pages:
+- `src/bulma/pages/companies/Index.vue`
+- `src/bulma/pages/companies/Create.vue`
+- `src/bulma/pages/companies/Edit.vue`
+
+The package ships the full companies administration flow: listing, creation, and a tabbed edit screen that embeds detail widgets such as people, addresses, comments, and documents.
+
+## Companion Backend Package
+
+- [`laravel-enso/companies`](https://docs.laravel-enso.com/backend/companies.html) [↗](https://github.com/laravel-enso/companies)
+
+The backend companion provides the routes, forms, tables, and tab payloads consumed by the companies frontend pages.
 
 ## Depends On
 
