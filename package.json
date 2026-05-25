@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/companies",
-  "version": "5.1.7",
+  "version": "5.2.0",
   "description": "Companies administration pages and tabbed company detail widgets for Enso UI.",
   "main": "src/bulma/pages/companies/Index.vue",
   "repository": {
