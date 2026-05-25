@@ -53,17 +53,6 @@
                             </div>
                         </div>
                     </tab>
-                    <tab keep-alive
-                        id="Documents">
-                        <div class="columns is-centered">
-                            <div class="column is-two-thirds">
-                                <documents :id="companyId"
-                                    type="company"
-                                    @update="updateDocuments(count)"
-                                    ref="documentsRef"/>
-                            </div>
-                        </div>
-                    </tab>
                 </template>
             </accessories>
         </div>
@@ -80,7 +69,6 @@ import { Addresses } from '@enso-ui/addresses/bulma';
 import { EnsoForm, FormField, Action } from '@enso-ui/forms/bulma';
 import People from './components/People.vue';
 import { Comments } from '@enso-ui/comments/bulma';
-import { Documents } from '@enso-ui/documents/bulma';
 
 const canAccess = inject('canAccess');
 const routerErrorHandler = inject('routerErrorHandler');
@@ -92,7 +80,6 @@ const form = ref(null);
 const peopleRef = ref(null);
 const addressesRef = ref(null);
 const commentsRef = ref(null);
-const documentsRef = ref(null);
 
 const companyId = computed(() => Number.parseInt(route.params.company, 10));
 
@@ -115,10 +102,6 @@ const updateAddresses = count => {
 
 const updateComments = count => {
     count.Comments = commentsRef.value.count;
-};
-
-const updateDocuments = count => {
-    count.Documents = documentsRef.value.count;
 };
 
 const personRemoved = personId => {
