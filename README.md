@@ -27,7 +27,7 @@ This package is also available through the full `enso-ui` workspace bundle.
 ## Features
 
 - ships company list, create, and edit pages for the administration module
-- combines forms, accessories, tabs, addresses, comments, documents, and people widgets in the edit page
+- combines forms, accessories, tabs, addresses, comments, and people widgets in the edit page
 - provides reusable company detail helpers such as `PeopleCard` inside the page modules
 
 ## Usage
@@ -55,7 +55,7 @@ Import: `@enso-ui/companies/src/bulma/pages/companies/Create.vue`
 
 ### `Edit`
 
-Detail page that composes company form tabs with people, addresses, comments, and documents widgets.
+Detail page that composes company form tabs with people, addresses, and comments widgets.
 
 Import: `@enso-ui/companies/src/bulma/pages/companies/Edit.vue`
 
@@ -79,7 +79,7 @@ Pages:
 - `src/bulma/pages/companies/Create.vue`
 - `src/bulma/pages/companies/Edit.vue`
 
-The package ships the full companies administration flow: listing, creation, and a tabbed edit screen that embeds detail widgets such as people, addresses, comments, and documents.
+The package ships the full companies administration flow: listing, creation, and a tabbed edit screen that embeds detail widgets such as people, addresses, and comments.
 
 ## Companion Backend Package
 
@@ -92,7 +92,6 @@ The backend companion provides the routes, forms, tables, and tab payloads consu
 - [`@enso-ui/accessories`](https://docs.laravel-enso.com/frontend/accessories.html) [↗](https://github.com/enso-ui/accessories)
 - [`@enso-ui/addresses`](https://docs.laravel-enso.com/frontend/addresses.html) [↗](https://github.com/enso-ui/addresses)
 - [`@enso-ui/comments`](https://docs.laravel-enso.com/frontend/comments.html) [↗](https://github.com/enso-ui/comments)
-- [`@enso-ui/documents`](https://docs.laravel-enso.com/frontend/documents.html) [↗](https://github.com/enso-ui/documents)
 - [`@enso-ui/forms`](https://docs.laravel-enso.com/frontend/forms.html) [↗](https://github.com/enso-ui/forms)
 - [`@enso-ui/tables`](https://docs.laravel-enso.com/frontend/tables.html) [↗](https://github.com/enso-ui/tables)
 - [`@enso-ui/tabs`](https://docs.laravel-enso.com/frontend/tabs.html) [↗](https://github.com/enso-ui/tabs)
